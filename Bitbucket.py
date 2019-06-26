@@ -24,4 +24,13 @@ def getProjects(baseUrl, token, outputFolder):
                 if(links["name"] == "http"):
                     httpUrl = links["href"]
 
+            if(httpUrl.startswith("http://")):
+                httpUrl = insert_string(httpUrl, token, 6)
+            elif(httpUrl.startswith("https://")):
+                httpUrl = insert_string(httpUrl, token, 7)
+            print(httpUrl)
             os.system("git clone " + httpUrl + " " + repoFolder)
+
+
+def insert_string(string, index, token):
+    return string[:index] + "x-token-auth:" + token + string[index:]
