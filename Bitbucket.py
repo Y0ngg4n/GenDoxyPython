@@ -25,9 +25,6 @@ def getProjects(baseUrl, username, password, outputFolder):
                 if(links["name"] == "http"):
                     httpUrl = links["href"]
 
-            os.system("echo maschine " + httpUrl.replace("http://", "").replace("https://", "") +  " >> ~/.netrc")
-            os.system("echo login " + username + " >> ~/.netrc")
-            os.system("echo password " + password + " >> ~/.netrc")
             print(httpUrl)
 
             os.system("git clone " + httpUrl + " " + repoFolder)

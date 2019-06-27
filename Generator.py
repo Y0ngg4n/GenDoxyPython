@@ -1,6 +1,7 @@
 import sys
 import Bitbucket as bb
 import requests
+import os
 
 def getArguments():
     if(len(sys.argv) < 6):
@@ -10,6 +11,10 @@ def getArguments():
     password = sys.argv[3]
     baseUrl = sys.argv[4]
     outputFolder = sys.argv[5]
+
+    os.system("echo maschine " + baseUrl.replace("http://", "").replace("https://", "") + " >> ~/.netrc")
+    os.system("echo login " + username + " >> ~/.netrc")
+    os.system("echo password " + password + " >> ~/.netrc")
 
     if(sys.argv[1]== "bitbucket"):
         print("Using BitBucket as RMS")
