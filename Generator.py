@@ -12,7 +12,7 @@ def getArguments():
     baseUrl = sys.argv[4]
     outputFolder = sys.argv[5]
 
-    os.system("echo maschine " + baseUrl.replace("http://", "").replace("https://", "") + " >> ~/.netrc")
+    os.system("echo machine " + baseUrl.replace("http://", "").replace("https://", "") + " >> ~/.netrc")
     os.system("echo login " + username + " >> ~/.netrc")
     os.system("echo password " + password + " >> ~/.netrc")
 
