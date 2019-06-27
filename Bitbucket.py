@@ -34,4 +34,5 @@ def getProjects(baseUrl, username, password, outputFolder):
             os.system("echo \"INPUT = " + repoFolder + "\" >> Doxyfile.conf")
             os.system("echo \"OUTPUT_DIRECTORY = " + "/data/doxygen/output/" + projectKeys[projectKey]
                       + "/" + repo["name"] + "\" >> Doxyfile.conf")
+            os.makedirs("/data/doxygen/output/" + projectKeys[projectKey] + "/" + repo["name"], exist_ok=True)
             os.system("doxygen Doxyfile.conf")
