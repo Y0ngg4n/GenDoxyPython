@@ -34,7 +34,7 @@ def getProjects(baseUrl, username, password, outputFolder):
             os.makedirs(outputRepoDir, exist_ok=True)
 
             #Branches
-            subprocess.Popen("cd " + repoFolder + " && git branch", stdout=subprocess.PIPE)
+            subprocess.Popen("cd " + repoFolder + " && git branch", stdout=subprocess.PIPE, shell=True)
             outputlines = filter(lambda x: len(x) > 0, (line.strip() for line in subprocess.stdout))
             for branch in outputlines:
                 outputBranchDir = outputRepoDir + "/" + branch.replace("*", "").trim()
