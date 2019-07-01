@@ -34,9 +34,9 @@ def getProjects(baseUrl, username, password, outputFolder):
             os.makedirs(outputRepoDir, exist_ok=True)
 
             #Branches
-            subprocess.Popen("cd " + repoFolder + " && git branch", stdout=subprocess.PIPE, shell=True)
-            outputlines = filter(lambda x: len(x) > 0, (line.strip() for line in subprocess.PIPE))
-            for branch in outputlines:
+            proc = subprocess.Popen("cd " + repoFolder + " && git branch", stdout=subprocess.PIPE, shell=True)
+            lines = proc.stdout.readlines();
+            for branch in lines:
                 outputBranchDir = outputRepoDir + "/" + branch.replace("*", "").trim()
 
                 os.system("echo \"OUTPUT_DIRECTORY = " + outputBranchDir + "\" >> Doxyfile.conf")
