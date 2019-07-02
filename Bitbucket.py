@@ -37,9 +37,9 @@ def getProjects(baseUrl, username, password, outputFolder):
             proc = subprocess.Popen("cd " + repoFolder + " && git branch", stdout=subprocess.PIPE, shell=True)
             lines = proc.stdout.readlines();
             for branch in lines:
-                branch = branch.decode("utf-8")
+                branch = branch.decode("utf-8").replace("*", "").replace("\r", "").strip()
                 print(branch)
-                outputBranchDir = outputRepoDir + "/" + branch.replace("*", "").replace("\r", "").strip()
+                outputBranchDir = outputRepoDir + "/" + branch
 
                 os.system("echo \"OUTPUT_DIRECTORY = " + outputBranchDir + "\" >> Doxyfile.conf")
                 os.system("cp /data/doxygen/Doxyfile Doxyfile.conf")
