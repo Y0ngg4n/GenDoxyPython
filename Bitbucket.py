@@ -39,7 +39,7 @@ def getProjects(baseUrl, username, password, outputFolder):
             print(lines)
             for branch in lines:
                 branch = branch.decode("utf-8")
-                outputBranchDir = outputRepoDir + "/" + branch.replace("*", "").replace("\r", "").trim()
+                outputBranchDir = outputRepoDir + "/" + branch.replace("*", "").replace("\r", "").strip()
 
                 os.system("echo \"OUTPUT_DIRECTORY = " + outputBranchDir + "\" >> Doxyfile.conf")
                 os.system("cp /data/doxygen/Doxyfile Doxyfile.conf")
