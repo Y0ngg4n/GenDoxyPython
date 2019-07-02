@@ -39,6 +39,5 @@ def getProjects(baseUrl, username, password, outputFolder, genOutPutFolder):
             lines = proc.stdout.readlines();
             for branch in lines:
                 branch = branch.decode("utf-8").replace("*", "").replace("\r", "").strip()
-                print(branch)
                 outputBranchDir = outputRepoDir + "/" + branch
                 Doxygen.generateDocumentation(repoFolder, repo["name"], outputBranchDir, branch)
