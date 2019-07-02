@@ -41,3 +41,5 @@ def getProjects(baseUrl, username, password, outputFolder, genOutPutFolder):
                 branch = branch.decode("utf-8").replace("*", "").replace("\r", "").strip()
                 outputBranchDir = outputRepoDir + "/" + branch
                 Doxygen.generateDocumentation(repoFolder, repo["name"], outputBranchDir, branch)
+
+    os.removedirs(outputFolder)
