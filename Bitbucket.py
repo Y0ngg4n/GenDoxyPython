@@ -4,6 +4,7 @@ import json
 import os
 import subprocess
 import Doxygen
+import shutil
 
 
 def getProjects(baseUrl, username, password, outputFolder, genOutPutFolder):
@@ -42,4 +43,5 @@ def getProjects(baseUrl, username, password, outputFolder, genOutPutFolder):
                 outputBranchDir = outputRepoDir + "/" + branch
                 Doxygen.generateDocumentation(repoFolder, repo["name"], outputBranchDir, branch)
 
-    os.removedirs(outputFolder)
+    shutil.rmtree(outputFolder)
+
