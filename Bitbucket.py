@@ -1,8 +1,9 @@
+#!/usr/bin/env python
 import requests
 import json
 import os
 import subprocess
-import urllib
+import Doxygen
 
 
 def getProjects(baseUrl, username, password, outputFolder):
@@ -40,11 +41,4 @@ def getProjects(baseUrl, username, password, outputFolder):
                 branch = branch.decode("utf-8").replace("*", "").replace("\r", "").strip()
                 print(branch)
                 outputBranchDir = outputRepoDir + "/" + branch
-
-                os.system("echo \"OUTPUT_DIRECTORY = " + outputBranchDir + "\" >> Doxyfile.conf")
-                os.system("cp /data/doxygen/Doxyfile Doxyfile.conf")
-                os.system("echo \"INPUT = " + repoFolder + "\" >> Doxyfile.conf")
-                os.system("echo \"PROJECT_NAME = \"" + repo["name"] + "\"")
-                os.system("cd " + repoFolder + " && git checkout " + branch)
-                os.makedirs(outputBranchDir, exist_ok=True)
-                os.system("doxygen Doxyfile.conf")
+                Doxygen.generateDocumentation(repoFolder, repo["name"], outputBranchDir, branch)
