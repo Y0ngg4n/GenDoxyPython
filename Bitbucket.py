@@ -44,4 +44,3 @@ def getProjects(baseUrl, username, password, outputFolder, genOutPutFolder):
                 Doxygen.generateDocumentation(repoFolder, repo["name"], outputBranchDir, branch)
 
     shutil.rmtree(outputFolder)
-
