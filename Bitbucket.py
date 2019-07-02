@@ -10,7 +10,7 @@ import shutil
 def getProjects(baseUrl, username, password, outputFolder, genOutPutFolder):
     apiUrl = baseUrl + "/rest/api/1.0/"
     print(apiUrl)
-    projects = requests.get(apiUrl + "projects?limit=1000", auth=(username, password)).text.encode("ascii", "ignore")
+    projects = requests.get(apiUrl + "projects?limit=1000", auth=(username, password)).text.encode("ascii", "ignore").decode("ascii")
     projects = json.loads(projects)["values"]
     projectKeys = {}
     for project in projects:
@@ -18,7 +18,7 @@ def getProjects(baseUrl, username, password, outputFolder, genOutPutFolder):
         os.makedirs(outputFolder + "/git/" + project["name"], exist_ok=True)
 
     for projectKey in projectKeys.keys():
-        repos = requests.get(apiUrl + "projects/" + projectKey + "/repos?limit=1000", auth=(username, password)).text.encode("ascii", "ignore")
+        repos = requests.get(apiUrl + "projects/" + projectKey + "/repos?limit=1000", auth=(username, password)).text.encode("ascii", "ignore").decode("decode('utf-8')")
         repos = json.loads(repos)["values"]
         for repo in repos:
             repoFolder = outputFolder + "/git/" + projectKeys[projectKey] + "/" + repo["name"]
