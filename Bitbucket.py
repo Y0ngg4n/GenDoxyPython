@@ -5,7 +5,7 @@ import os
 import subprocess
 import Doxygen
 import shutil
-
+import re
 
 def getProjects(baseUrl, username, password, outputFolder, genOutPutFolder):
     apiUrl = baseUrl + "/rest/api/1.0/"
@@ -36,10 +36,10 @@ def getProjects(baseUrl, username, password, outputFolder, genOutPutFolder):
             os.makedirs(outputRepoDir, exist_ok=True)
 
             # Branches
-            proc = subprocess.Popen("cd " + repoFolder + " && git branch", stdout=subprocess.PIPE, shell=True)
+            proc = subprocess.Popen("cd " + repoFolder + " && git branch -a", stdout=subprocess.PIPE, shell=True)
             lines = proc.stdout.readlines();
             for branch in lines:
-                branch = branch.decode("ascii").replace("*", "").replace("\r", "").strip()
+                branch = re.sub(".*\/", "", branch.decode("ascii").replace("*", "").replace("\r", "").strip())
                 outputBranchDir = outputRepoDir + "/" + branch
                 Doxygen.generateDocumentation(repoFolder, repo["name"], outputBranchDir, branch)
 
