@@ -6,7 +6,7 @@ import subprocess
 import Doxygen
 
 
-def getProjects(baseUrl, username, password, outputFolder):
+def getProjects(baseUrl, username, password, outputFolder, genOutPutFolder):
     apiUrl = baseUrl + "/rest/api/1.0/"
     print(apiUrl)
     projects = requests.get(apiUrl + "projects", auth=(username, password)).text
@@ -31,7 +31,7 @@ def getProjects(baseUrl, username, password, outputFolder):
             print(httpUrl)
 
             os.system("git clone " + httpUrl + " " + repoFolder)
-            outputRepoDir = "/data/doxygen/output/" + projectKeys[projectKey] + "/" + repo["name"]
+            outputRepoDir = genOutPutFolder + "/" + projectKeys[projectKey] + "/" + repo["name"]
             os.makedirs(outputRepoDir, exist_ok=True)
 
             # Branches

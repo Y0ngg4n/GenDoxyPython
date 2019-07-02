@@ -12,6 +12,7 @@ def getArguments():
     password = sys.argv[3]
     baseUrl = sys.argv[4]
     outputFolder = sys.argv[5]
+    genOutPutFolder = sys.argv[6]
 
     os.system("echo machine " + baseUrl.replace("http://", "").replace("https://", "") + " >> ~/.netrc")
     os.system("echo login " + username + " >> ~/.netrc")
@@ -19,7 +20,7 @@ def getArguments():
 
     if(sys.argv[1]== "bitbucket"):
         print("Using BitBucket as RMS")
-        bb.getProjects(baseUrl, username, password, outputFolder)
+        bb.getProjects(baseUrl, username, password, outputFolder, genOutPutFolder)
 
 if __name__ == "__main__":
     getArguments();
