@@ -10,7 +10,7 @@ import shutil
 def getProjects(baseUrl, username, password, outputFolder, genOutPutFolder):
     apiUrl = baseUrl + "/rest/api/1.0/"
     print(apiUrl)
-    projects = requests.get(apiUrl + "projects?limit=1000", auth=(username, password)).text
+    projects = requests.get(apiUrl + "projects?limit=1000", auth=(username, password)).text.encode("ascii", "ignore")
     projects = json.loads(projects)["values"]
     projectKeys = {}
     for project in projects:
@@ -18,7 +18,7 @@ def getProjects(baseUrl, username, password, outputFolder, genOutPutFolder):
         os.makedirs(outputFolder + "/git/" + project["name"], exist_ok=True)
 
     for projectKey in projectKeys.keys():
-        repos = requests.get(apiUrl + "projects/" + projectKey + "/repos?limit=1000", auth=(username, password)).text
+        repos = requests.get(apiUrl + "projects/" + projectKey + "/repos?limit=1000", auth=(username, password)).text.encode("ascii", "ignore")
         repos = json.loads(repos)["values"]
         for repo in repos:
             repoFolder = outputFolder + "/git/" + projectKeys[projectKey] + "/" + repo["name"]
@@ -39,7 +39,7 @@ def getProjects(baseUrl, username, password, outputFolder, genOutPutFolder):
             proc = subprocess.Popen("cd " + repoFolder + " && git branch", stdout=subprocess.PIPE, shell=True)
             lines = proc.stdout.readlines();
             for branch in lines:
-                branch = branch.decode("utf-8").replace("*", "").replace("\r", "").strip()
+                branch = branch.decode("ascii").replace("*", "").replace("\r", "").strip()
                 outputBranchDir = outputRepoDir + "/" + branch
                 Doxygen.generateDocumentation(repoFolder, repo["name"], outputBranchDir, branch)
 
