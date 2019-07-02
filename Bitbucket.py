@@ -36,6 +36,7 @@ def getProjects(baseUrl, username, password, outputFolder):
             #Branches
             proc = subprocess.Popen("cd " + repoFolder + " && git branch", stdout=subprocess.PIPE, shell=True)
             lines = proc.stdout.readlines();
+            print(lines)
             for branch in lines:
                 outputBranchDir = outputRepoDir + "/" + branch.replace("*", "").trim()
 
