@@ -18,7 +18,7 @@ def getProjects(baseUrl, username, password, outputFolder, genOutPutFolder):
         os.makedirs(outputFolder + "/git/" + project["name"], exist_ok=True)
 
     for projectKey in projectKeys.keys():
-        repos = requests.get(apiUrl + "projects/" + projectKey + "/repos?limit=1000", auth=(username, password)).text.encode("ascii", "ignore").decode("decode('utf-8')")
+        repos = requests.get(apiUrl + "projects/" + projectKey + "/repos?limit=1000", auth=(username, password)).text.encode("ascii", "ignore").decode("ascii")
         repos = json.loads(repos)["values"]
         for repo in repos:
             repoFolder = outputFolder + "/git/" + projectKeys[projectKey] + "/" + repo["name"]
