@@ -10,7 +10,7 @@ import shutil
 def getProjects(baseUrl, username, password, outputFolder, genOutPutFolder):
     apiUrl = baseUrl + "/rest/api/1.0/"
     print(apiUrl)
-    projects = requests.get(apiUrl + "projects", auth=(username, password)).text
+    projects = requests.get(apiUrl + "projects?limit=1000", auth=(username, password)).text
     projects = json.loads(projects)["values"]
     projectKeys = {}
     for project in projects:
