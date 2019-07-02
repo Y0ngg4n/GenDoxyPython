@@ -4,6 +4,7 @@ import Bitbucket as bb
 import requests
 import os
 
+
 def getArguments():
     if len(sys.argv) < 6:
         print("Please provide at least 5 Parameter!")
@@ -18,9 +19,10 @@ def getArguments():
     os.system("echo login " + username + " >> ~/.netrc")
     os.system("echo password " + password + " >> ~/.netrc")
 
-    if sys.argv[1]== "bitbucket":
+    if sys.argv[1] == "bitbucket":
         print("Using BitBucket as RMS")
         bb.getProjects(baseUrl, username, password, outputFolder, genOutPutFolder)
+
 
 if __name__ == "__main__":
     getArguments()
