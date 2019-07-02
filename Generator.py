@@ -23,4 +23,4 @@ def getArguments():
         bb.getProjects(baseUrl, username, password, outputFolder, genOutPutFolder)
 
 if __name__ == "__main__":
-    getArguments();
+    getArguments()
