@@ -1,5 +1,6 @@
 import os
 
+
 def generateDocumentation(repoFolder, repoName, outputBranchDir, branch):
     os.system("cp /data/doxygen/Doxyfile Doxyfile.conf")
     os.system("echo \"OUTPUT_DIRECTORY = " + outputBranchDir + "\" >> Doxyfile.conf")

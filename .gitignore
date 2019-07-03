@@ -70,3 +70,5 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 /venv/
+__pycache__/Doxygen.cpython-37.pyc
+__pycache__/Gitea.cpython-37.pyc

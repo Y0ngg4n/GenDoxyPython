@@ -1,8 +1,10 @@
-import requests
 import json
 import os
-import subprocess
 import re
+import subprocess
+
+import requests
+
 import Doxygen
 
 

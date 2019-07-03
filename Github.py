@@ -1,13 +1,15 @@
-import requests
 import json
 import os
-import subprocess
 import re
+import subprocess
+
+import requests
+
 import Doxygen
 
 
 def getProjects(baseUrl, username, password, outputFolder, genOutPutFolder):
-    apiUrl = baseUrl.replace("http://", "http://api."+baseUrl).replace("https://api." + baseUrl)
+    apiUrl = baseUrl.replace("http://", "http://api." + baseUrl).replace("https://api." + baseUrl)
 
     repos = requests.get(apiUrl + "user/subscriptions", auth=(username, password)).text.encode("ascii",
                                                                                                "ignore").decode("ascii")
