@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import sys
 import Bitbucket as bb
+import Gitea as gitea
 import requests
 import os
 
@@ -22,7 +23,9 @@ def getArguments():
     if sys.argv[1] == "bitbucket":
         print("Using BitBucket as RMS")
         bb.getProjects(baseUrl, username, password, outputFolder, genOutPutFolder)
-
+    elif sys.argv[1] == "gitea":
+        print("Using Gitea as RMS")
+        gitea.getProjects(baseUrl,username, password, outputFolder, genOutPutFolder)
 
 if __name__ == "__main__":
     getArguments()
