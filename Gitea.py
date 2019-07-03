@@ -8,8 +8,6 @@ import Doxygen
 
 def getProjects(baseUrl, username, password, outputFolder, genOutPutFolder):
     apiUrl = baseUrl + "/api/v1/"
-    orgs = requests.get(apiUrl + "orgs", auth=(username, password)).text.encode("ascii", "ignore").decode("ascii")
-    orgs = json.loads(orgs)
 
     repos = requests.get(apiUrl + "user/subscriptions", auth=(username, password)).text.encode("ascii",
                                                                                                "ignore").decode("ascii")
