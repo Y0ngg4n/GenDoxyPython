@@ -2,6 +2,7 @@
 import sys
 import Bitbucket as bb
 import Gitea as gitea
+import Github as github
 import requests
 import os
 
@@ -26,6 +27,9 @@ def getArguments():
     elif sys.argv[1] == "gitea":
         print("Using Gitea as RMS")
         gitea.getProjects(baseUrl,username, password, outputFolder, genOutPutFolder)
+    elif sys.argv[1] == "github":
+        print("Using Github as RMS")
+        github.getProjects(baseUrl,username, password, outputFolder, genOutPutFolder)
 
 if __name__ == "__main__":
     getArguments()
