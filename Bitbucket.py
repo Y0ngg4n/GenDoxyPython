@@ -16,6 +16,7 @@ def getProjects(baseUrl, username, password, outputFolder, genOutPutFolder):
                                                                                                    "ignore").decode(
         "ascii")
     projects = json.loads(projects)["values"]
+    print(projects)
     projectKeys = {}
     for project in projects:
         projectKeys[project["key"]] = project["name"]
